@@ -1,4 +1,6 @@
 import javax.lang.model.type.NullType;
+
+import java.lang.reflect.Array;
 import java.util.Random;
 public class Mapa{
     Object[][] Tablero = new Object[50][50];
@@ -14,10 +16,17 @@ public class Mapa{
                     Tablero[i][j] = new Alimento();}
             }
         }
-        Tablero[0][0] = j1;
-        Tablero[49][0] = j2;
-        Tablero[0][49] = j3;
-        Tablero[49][49] = j4;
+        Object jugadores[] = {j1, j2, j3, j4};
+        Random fila = new Random();
+        Random columna = new Random();
+
+        for (int j = 0; j < 4; j++){
+            Tablero[fila.nextInt(0,50)][columna.nextInt(0,50)] = jugadores[j];
+        }
+        // Tablero[0][0] = j1;
+        // Tablero[49][0] = j2;
+        // Tablero[0][49] = j3;
+        // Tablero[49][49] = j4;
 
     }
     public void mapaEnteros() {
