@@ -1,10 +1,17 @@
 import javax.lang.model.type.NullType;
-
 import java.lang.reflect.Array;
 import java.util.Random;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Mapa{
-    Object[][] Tablero = new Object[50][50];
-    int[][] TableroEntero = new int[50][50];
+
+    protected Object[][] Tablero = new Object[50][50];
+    protected int[][] TableroEntero = new int[50][50];
+    JFrame mapaPrueba;
 
     public Mapa(){}
 
@@ -23,13 +30,10 @@ public class Mapa{
         for (int j = 0; j < 4; j++){
             Tablero[fila.nextInt(0,50)][columna.nextInt(0,50)] = jugadores[j];
         }
-        // Tablero[0][0] = j1;
-        // Tablero[49][0] = j2;
-        // Tablero[0][49] = j3;
-        // Tablero[49][49] = j4;
+
 
     }
-    public void mapaEnteros() {
+    public int[][] mapaEnteros() {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 if (Tablero[i][j] instanceof Alimento) {
@@ -41,6 +45,7 @@ public class Mapa{
 
             }
         }
+        return TableroEntero;
     }
     public void getMapaEnteros(){
         for (int i = 0; i < 50; i++) {
@@ -61,10 +66,40 @@ public class Mapa{
 
     }
 
+    public void crearMapa(){
 
 
+        int[][] matrizEnterosPrueba1 = mapaEnteros();
 
+        mapaPrueba = new JFrame("Microorganismos prueba");
+        mapaPrueba.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mapaPrueba.setVisible(true);
 
-
+        JPanel panelBotonesJuego = new JPanel(); 
+        panelBotonesJuego.setLayout(new GridLayout(50,50,1,1));
+        mapaPrueba.add(panelBotonesJuego);
+        for (int i=0; i<50; i++){
+            for (int j = 0; j<50; j++ ){
+                JButton botonTemporal = new JButton();
+                
+                if (matrizEnterosPrueba1[i][j] == 2){
+                    botonTemporal.setBackground(Color.red);
+                }
+                else{
+                    botonTemporal.setBackground(Color.black);
+                }
+                
+                panelBotonesJuego.add(botonTemporal);
+                panelBotonesJuego.setLocation(i,j);
+                int posicionX = i;
+                int posicionY = j;
+                botonTemporal.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        System.out.println("Se presionó el boton en la posición " + posicionX + " "+ posicionY);
+                        }
+                });
+            }
+        }
+    }
 
 }

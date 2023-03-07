@@ -11,14 +11,7 @@ public class Main {
         m.LlenarMapa(o1,o2,o3,o4);
         m.mapaEnteros();
         m.getMapaEnteros();
-        for (int i = 0; i < 10; i++){
-            for (int j = 0; j < 10; j++){
-                if(m.Tablero[i][j] instanceof Alimento){
-                    ((Alimento) m.Tablero[i][j]).getAlimentoEstadisticas();
-
-                }
-            }
-        }
+        m.crearMapa();
 
     }
 }
