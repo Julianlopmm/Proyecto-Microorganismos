@@ -1,0 +1,475 @@
+    public int getIB(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(mapaEnteros()[i][j] == 1){
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+    public int getJB(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(mapaEnteros()[i][j] == 1){
+                    return j;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int buscarComidaB() {
+        int i = getIB();
+        int j = getJB();
+        int vision = o1.getVision();
+        if (getIB() - vision < 0) {
+            i = 0;
+            for (int o = 0; o < vision; o++) {
+                if(getJB() - vision < 0){
+                    j = 0;
+                    for (int p = 0 ; p < vision; p++) {
+                        if (Tablero[o][p] instanceof AlimentoEnergia) {
+                            if(o > getIB()){
+                                return 1;
+                            }
+                            if (o < getIB()){
+                                return 2;
+                            }
+                            else if(o == getIB()){
+                                if(j > getJB()){
+                                    return 3;
+                                }
+                                if(j < getJB()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else{
+                    for (int k = j- vision ; k < vision; k++) {
+                        if (Tablero[o][k] instanceof AlimentoEnergia) {
+                            if(o > getIB()){
+                                return 1;
+                            }
+                            if (o < getIB()){
+                                return 2;
+                            }
+                            else if(o == getIB()){
+                                if(j > getJB()){
+                                    return 3;
+                                }
+                                if(j < getJB()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        else {
+            for (int a = i - vision; a < vision; a++) {
+                if(j-vision < 0){
+                    j = 0;
+                    for (int h = 0; h < vision; h++) {
+                        if (Tablero[a][h] instanceof  AlimentoEnergia) {
+                            if (i > getIB()) {
+                                return 1;
+                            }
+                            if (i < getIB()) {
+                                return 2;
+                            } else if (i == getIB()){
+                                if (j > getJB()) {
+                                    return 3;
+                                }
+                                if (j < getJB()) {
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                }
+                for (int z = j- vision; z < vision; z++) {
+                    if (Tablero[a][z] instanceof AlimentoEnergia){
+                        if (i > getIB()) {
+                            return 1;
+                        }
+                        if (i < getIB()) {
+                            return 2;
+                        } else if (i == getIB()) {
+                            if (j > getJB()) {
+                                return 3;
+                            }
+                            if (j < getJB()) {
+                                return 4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void moverseAcomidaB(int x){
+        if(x == 1){
+            Tablero[getIVI() + 1][getJVI()] = o1;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI() + 1][getJVI()] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+        if(x == 2){
+            Tablero[getIVI() - 1][getJVI()] = o1;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI() - 1][getJVI()] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+
+        if(x == 3){
+            Tablero[getIVI()][getJVI() + 1] = o1;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI()][getJVI() + 1] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+
+        if(x == 4){
+            Tablero[getIVI()][getJVI() - 1] = o1;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI()][getJVI() - 1] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+
+    }
+
+
+
+
+    //// MOVIMIENTOS ORGANISMO VELOCIDAD
+
+
+
+    public int getIVE(){
+        for(int i = 0; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+                if(Tablero[i][j] == o2){
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+    public int getJVE(){
+        for(int i = 0; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+                if(Tablero[i][j] == o2){
+                    return j;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int buscarComidaVe() {
+        int i = getIVE();
+        int j = getJVE();
+        int vision = o2.getVision();
+        if (getIVE() - vision < 0) {
+            i = 0;
+            for (int o = 0; o < vision; o++) {
+                if(getJVE() - vision < 0){
+                    j = 0;
+                    for (int p = 0 ; p < vision; p++) {
+                        if (Tablero[o][p] instanceof AlimentoVelocidad) {
+                            if(o > getIVE()){
+                                return 1;
+                            }
+                            if (o < getIVE()){
+                                return 2;
+                            }
+                            else if(o == getIVE()){
+                                if(j > getJVE()){
+                                    return 3;
+                                }
+                                if(j < getJVE()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else{
+                    for (int k = j- vision ; k < vision; k++) {
+                        if (Tablero[o][k] instanceof AlimentoVelocidad) {
+                            if(o > getIVE()){
+                                return 1;
+                            }
+                            if (o < getIVE()){
+                                return 2;
+                            }
+                            else if (o == getIVE()){
+                                if(j > getJVE()){
+                                    return 3;
+                                }
+                                if(j < getJVE()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        else {
+            for (int a = i - vision; a < vision; a++) {
+                if(j-vision < 0){
+                    j = 0;
+                    for (int h = 0; h < vision; h++) {
+                        if (Tablero[a][h] instanceof AlimentoVelocidad) {
+                            if (i > getIVE()) {
+                                return 1;
+                            }
+                            if (i < getIVE()) {
+                                return 2;
+                            } else if(i == getIVE()){
+                                if (j > getJVE()) {
+                                    return 3;
+                                }
+                                if (j < getJVE()) {
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                }
+                for (int z = j- vision; z < vision; z++) {
+                    if (Tablero[a][z] instanceof AlimentoVelocidad){
+                        if (i > getIVE()) {
+                            return 1;
+                        }
+                        if (i < getIVE()) {
+                            return 2;
+                        } else if(i == getIVE()){
+                            if (j > getJVE()) {
+                                return 3;
+                            }
+                            if (j < getJVE()) {
+                                return 4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void moverseAcomidaVE(int x){
+        if(x == 1){
+            Tablero[getIVE() + 1][getJVE()] = o2;
+            Tablero[getIVE()][getJVE()] = null;
+            TableroEntero[getIVE() + 1][getJVE()] = 3;
+            TableroEntero[getIVE()][getJVE()] = 0;
+
+        }
+        if(x == 2){
+            Tablero[getIVE() - 1][getJVE()] = o2;
+            Tablero[getIVE()][getJVE()] = null;
+            TableroEntero[getIVE() - 1][getJVE()] = 3;
+            TableroEntero[getIVE()][getJVE()] = 0;
+
+        }
+
+        if(x == 3){
+            Tablero[getIVE()][getJVE() + 1] = o2;
+            Tablero[getIVE()][getJVE()] = null;
+            TableroEntero[getIVE()][getJVE() + 1] = 3;
+            TableroEntero[getIVE()][getJVE()] = 0;
+
+        }
+
+        if(x == 4){
+            Tablero[getIVE()][getJVE() - 1] = o2;
+            Tablero[getIVE()][getJVE()] = null;
+            TableroEntero[getIVE()][getJVE() - 1] = 3;
+            TableroEntero[getIVE()][getJVE()] = 0;
+
+        }
+    }
+
+
+    // MOVIMIENTOS ORGANISMO VISION
+
+
+    public int getIVI(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(mapaEnteros()[i][j] == 4){
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+    public int getJVI(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(mapaEnteros()[i][j] == 4){
+                    return j;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int buscarComidaVi() {
+        int i = getIVI();
+        int j = getJVI();
+        int vision = o4.getVision();
+        if (getIVI() - vision < 0) {
+            i = 0;
+            for (int o = 0; o < vision; o++) {
+                if(getJVI() - vision < 0){
+                    j = 0;
+                    for (int p = 0 ; p < vision; p++) {
+                        if (Tablero[o][p] instanceof AlimentoVision) {
+                            if(o > getIVI()){
+                                return 1;
+                            }
+                            if (o < getIVI()){
+                                return 2;
+                            }
+                            else if(o == getIVI()){
+                                if(j > getJVI()){
+                                    return 3;
+                                }
+                                if(j < getJVI()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else{
+                    for (int k = j- vision ; k < vision; k++) {
+                        if (Tablero[o][k] instanceof AlimentoVision) {
+                            if(o > getIVI()){
+                                return 1;
+                            }
+                            if (o < getIVI()){
+                                return 2;
+                            }
+                            else if(o == getIVI()){
+                                if(j > getJVI()){
+                                    return 3;
+                                }
+                                if(j < getJVI()){
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        else {
+            for (int a = i - vision; a < vision; a++) {
+                if(j-vision < 0){
+                    j = 0;
+                    for (int h = 0; h < vision; h++) {
+                        if (Tablero[a][h] instanceof AlimentoVision) {
+                            if (i > getIVI()) {
+                                return 1;
+                            }
+                            if (i < getIVI()) {
+                                return 2;
+                            } else if(i == getIVI()){
+                                if (j > getJVI()) {
+                                    return 3;
+                                }
+                                if (j < getJVI()) {
+                                    return 4;
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                }
+                for (int z = j- vision; z < vision; z++) {
+                    if (Tablero[a][z] instanceof AlimentoVision) {
+                        if (i > getIVI()) {
+                            return 1;
+                        }
+                        if (i < getIVI()) {
+                            return 2;
+                        } else if(i == getIVI()){
+                            if (j > getJVI()) {
+                                return 3;
+                            }
+                            if (j < getJVI()) {
+                                return 4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void moverseAcomidaVI(int x){
+        if(x == 1){
+            Tablero[getIVI() + 1][getJVI()] = o4;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI() + 1][getJVI()] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+        if(x == 2){
+            Tablero[getIVI() - 1][getJVI()] = o4;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI() - 1][getJVI()] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+
+        if(x == 3){
+            Tablero[getIVI()][getJVI() + 1] = o4;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI()][getJVI() + 1] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+
+        if(x == 4){
+            Tablero[getIVI()][getJVI() - 1] = o4;
+            Tablero[getIVI()][getJVI()] = null;
+            TableroEntero[getIVI()][getJVI() - 1] = 4;
+            TableroEntero[getIVI()][getJVI()] = 0;
+
+        }
+    }
+
+
+
+
